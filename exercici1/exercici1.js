@@ -80,6 +80,7 @@ function usuari(elecciousuari){
         }
         
     }
+    
 
     document.getElementById('comptador').innerHTML ='<b>Guanyats= ' + guany + ' Perduts= ' + perd +'</b>';
    
