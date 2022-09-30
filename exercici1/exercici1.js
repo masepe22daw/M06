@@ -66,6 +66,7 @@ function usuari(elecciousuari){
         }
     }
 
+    
     document.getElementById('efecte').style.display = "";
 
     window.onload= function comptador(){
