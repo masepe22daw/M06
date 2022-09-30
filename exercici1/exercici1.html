@@ -2,14 +2,16 @@
 <head>
    <meta charset="UTF-8">
    <script type="text/javascript" src="exercici1.js"></script>
-   <title>Pedra,paper o tisores</title>
+   <title>Pedra, paper o tisores</title>
 </head>
 <body>
     <div id="joc">
-        <h1></h1>
-        <div onclick="usuari('0');" id="pedra"></div>
-        <div onclick="usuari('1');" id="paper"></div>
-        <div onclick="usuari('2');" id="tisores"></div>
+        <h1>Escolleix una opció:</h1>
+        <button onclick="usuari('0');" id="pedra">Pedra</button>
+        <button onclick="usuari('1');" id="paper">Paper</button>
+        <button onclick="usuari('2');" id="tisores">Tisores</button>
     </div>
+    <div id="efecte" style="display:none";></div>
+    <div id="comptador"></div>
 </body>
 </html>
