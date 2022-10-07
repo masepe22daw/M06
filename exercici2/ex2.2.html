@@ -2,16 +2,16 @@
 <html lang="ca">
 	<head>
 		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
-		<title>Càlcul de velocitats mitjanes</title>
+		<title>Càlcul de temperatures</title>
 	</head>
 	<body>    
-		<p><b><u>APLICACIÓ PEL CÀLCUL DE VELOCITATS MITJANES</u></b></p>
-		<b>a) Introudeix les dades de velocitat en quilòmetres per hora (Km/h):<br></b>
+		<p><b><u>APLICACIÓ PEL CÀLCUL DE TEMPERATURES</u></b></p>
+		<b>a) Introudeix les dades de temperatura en graus Celsius (ºC):<br></b>
 		<table>
 			<tbody>
 				<tr>
 					<td>Mostra de Temperatura 1:</td>
-					<td><input type="text" name="c[]" size="5" maxlength="6" value=0></td>
+					<td><input type="text" name="temp[]" size="5" maxlength="6" value=0></td>
 					<td>Mostra de Temperatura 2:</td>
 					<td><input type="text" name="temp[]" size="5" maxlength="6" value=0></td>
 				</tr>
@@ -35,25 +35,75 @@
 				 </tr>
 			</tbody>
 		</table>	
-		<br> 
+		<br>
         <b>b) Escull les unitats de temperatura del resultat:</b><br>
         <input name="ut[]" value="celsius" type="checkbox" checked>Graus Celsius (ºC)<br>
         <input name="ut[]" value="fahrenheit" type="checkbox">Graus Fahrenheit (ºF)<br>
         <input name="ut[]" value="kelvins" type="checkbox">Kelvins (K)<br>
-        <br>         
+        <br>        
         <button onclick='fCalcula()'>Calcula mitjanes</button>
 		<button onclick='fNeteja()'>Neteja dades</button>
 		<p><b>RESULTATS:</b></p>
 		<p id="resultats"></p>
 		<button onclick='fReinicia()'>Neteja resultats</button>
 		<script>
-			function fCalcula() {							
+			function fCalcula() {
+				let mostres = document.getElementsByName('temp[]');
+			let mitja = 0;
+			let unitats = document.getElementsByName('ut[]');
+			let seleccio = new Array();
+			let mitjaFahrenheit =0;
+			let mitjaKelvin =0;
+
+			for (var z = 0; z < mostres.length; z++) {
+				var a = mostres[i];
+				mitja = mitja + parseFloat(a.value);
+			}
+			mitja /= 8;
+			mitjaFahrenheit = ((9 * mitja) / 5) + 32;
+			mitjaKelvin = 273 + mitja;
+
+			for (var k = 0; k < unitats.length; k++) {
+				if (unitats[k].checked) {
+					seleccio.push(unitats[k].checked);
+				}
+				else {
+					seleccio.push("");
+				}
+			}
+			if (seleccio[0] == true) {
+				document.getElementById('resultats').innerHTML += `La velocitat mitjana en Km/h es de ${mitja.toFixed(2)} <br>`;
+			}
+			if (seleccio[1] == true) {
+				document.getElementById('resultats').innerHTML += `La velocitat mitjana en mph es de ${mitjaFahrenheit.toFixed(2)} <br>`;
+			}
+			if (seleccio[2] == true) {
+				document.getElementById('resultats').innerHTML += `La velocitat mitjana en m/s es de ${mitjaKelvin.toFixed(2)} <br>`;
+			}
+
 			}
 			
-			function fNeteja() {									 
+
+			function fNeteja() {
+				var caixa = document.getElementsByName("ut[]");
+				var i;
+				for (i = 1; i < caixa.length; i++){
+					if (caixa[i].type == "checkbox"){
+						caixa[i].checked = false;
+					}
+				}
+
+				var graus = document.getElementsByName("temp[]");
+				var x;
+				for (x = 0; x < graus.length; x++){
+					if (graus[x].type == "text"){
+						graus[x].value = "0";
+					}
+				}
 			}
 						
-			function fNetejaReinicia() {				
+			function fReinicia() {	
+				document.getElementById("resultats").innerHTML = "";			
 			}
 		</script>   
 	</body>
